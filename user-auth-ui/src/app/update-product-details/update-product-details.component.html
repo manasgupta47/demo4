@@ -1,0 +1,33 @@
+<mat-toolbar><span class="m-auto">Add a Product</span>
+</mat-toolbar>
+<div class="container-sm mt-5 col-md-5">
+<div class="card" style="padding: 20px">
+  <form [formGroup]="updateForm">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Product Name</mat-label>
+      <input value="{{product.productName}}" formControlName="productName" type="text" name="productName" id="productName" matInput placeholder="productName">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Product Description</mat-label>
+      <input value="{{product.productDescription}}" formControlName="productDescription" type="text" name="productDescription" id="productDescription" matInput placeholder="productDescription">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Product Actual Price</mat-label>
+      <input value="{{product.productActualPrice}}" formControlName="productActualPrice" type="number"  name="productActualPrice" id="productActualPrice" matInput placeholder="productActualPrice">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Product Discounted Price</mat-label>
+      <input value="{{product.productDiscountedPrice}}" formControlName="productDiscountedPrice" type="number"  name="productDiscountedPrice" id="productDiscountedPrice" matInput placeholder="productDiscountedPrice">
+    </mat-form-field>
+    <div class="col-6">
+      <h3>Choose a Product Image</h3>
+      <input id="file" (change)="onChange($event)" type="file" formControlName="productImage"  name="productImage"/>
+      <label for="fileInput" class="file-label" >{{selectedFileName.substring(0,35)}}.jpeg</label>
+    </div>
+    <div align="end">
+    <button type="submit" (click)="onClickSubmit()"  mat-stroked-button color="accent">Update Product</button>
+  </div>
+  </form>
+</div>
+</div>
+

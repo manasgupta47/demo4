@@ -1,0 +1,42 @@
+<mat-toolbar><span class="m-auto">News</span>
+</mat-toolbar>
+<div class="container mt-5">
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Search any news</mat-label>
+    <input matInput
+           #searchkeyword
+           (keyup)="searchByKeyword(searchkeyword.value)"
+           name="searchKey"
+           id="searchKey"
+           placeholder="Search any news">
+</mat-form-field>
+  <mat-grid-list cols="4" rowHeight="3:5.2" gutterSize="10">
+    <mat-grid-tile *ngFor="let p of newsDetails">
+      <div class="row p-4">
+      <div class="image-container">
+        <img class="home-page-product-image" [src]="p.newsImage">
+      </div>
+      <div class="mt-1" style="margin-left:5px;">
+        <p><b>{{p.newsTitle}}</b></p>
+      </div>
+      <div class="mt-1" style="margin-left:10px;">
+        <p style="white-space: inherit; height: 20px; width: 260px; overflow: hidden; text-overflow: ellipsis;">{{p.newsDescription}}</p>
+      </div>
+      <div class="mt-1" style="margin-left:10px;">
+        <b>Published Date - </b>
+        <p>{{p.newsPublishDate}}</p>
+      </div>
+      <div class="mt-1" style="margin-left:10px;">
+        <button type="button" mat-raised-button color="warn" (click)="showNewsDetails(p.newsId)">View</button>
+      </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="text-center mt-5" style="padding-bottom: 100px;" *ngIf="showLoadButton">
+    <button type="button" mat-raised-button color="primary" (click)="loadMoreNews()"> Load more</button>
+  </div>
+
+  <div class="mt-5" >
+       
+  </div>
+</div>

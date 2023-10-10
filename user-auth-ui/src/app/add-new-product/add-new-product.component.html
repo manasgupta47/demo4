@@ -1,0 +1,34 @@
+<mat-toolbar><span class="m-auto">Add a Product</span>
+  </mat-toolbar>
+<div class="container-sm mt-5 col-md-5">
+  <div class="card" style="padding: 20px">
+    <form [formGroup]="productForm">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product Name</mat-label>
+        <input formControlName="productName" type="text" required name="productName" id="productName" matInput placeholder="productName">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product Description</mat-label>
+        <input formControlName="productDescription" type="text" required name="productDescription" id="productDescription" matInput placeholder="productDescription">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product Actual Price</mat-label>
+        <input formControlName="productActualPrice" type="number" required name="productActualPrice" id="productActualPrice" matInput placeholder="productActualPrice">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Product Discounted Price</mat-label>
+        <input formControlName="productDiscountedPrice" type="number" required name="productDiscountedPrice" id="productDiscountedPrice" matInput placeholder="productDiscountedPrice">
+      </mat-form-field>
+      <div class="col-6">
+        <h3>Choose a Product Image</h3>
+        <input required type="file" (change)="onChange($event)" formControlName="productImage" name="productImage"/>
+      </div>
+      <div align="end">
+      <button type="submit" (click)="resetData()" mat-stroked-button color="primary" style="margin-right:4px;">Clear</button>
+      <button type="submit" (click)="onClickSubmitForm()"  mat-stroked-button color="accent">Add Product</button>
+
+    </div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,115 @@
+<mat-toolbar><span class="m-auto">Make Payment</span>
+</mat-toolbar>
+<div class="container mt-5">
+  
+  <div class="card p-2">
+
+      <div class="row">
+          <div class="col-6">
+
+              <form [formGroup]="customerDetails" (ngSubmit)="onSubmit()"
+                   >
+
+                  <mat-form-field appearance="outline"
+                                  class="w-100">
+                      <mat-label>Full Name</mat-label>
+                      <input matInput
+                             placeholder="Full Name"
+                             formControlName="customerName"
+                             name="customerName">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline"
+                                  class="w-100">
+                      <mat-label>Email</mat-label>
+                      <input matInput
+                      formControlName="email"
+                             placeholder="Email"
+                            
+                             name="email">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline"
+                                  class="w-100">
+                      <mat-label>Contact No.</mat-label>
+                      <input matInput
+                             placeholder="Contact No."
+                             formControlName="phoneNumber"
+                             name="phoneNumber">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline"
+                                  class="w-100">
+                      <mat-label>Address</mat-label>
+                      <input matInput
+                             placeholder="Address"
+                            formControlName="address"
+                             name="address">
+                  </mat-form-field>
+
+                  <div align="end">
+                      <button type="submit" mat-stroked-button
+                              color="primary"
+                              style="margin-right: 3px;">Pay Now</button>
+                  </div>
+
+              </form>
+
+          </div>
+          <div class="col-6">
+              
+            <table class="table">
+              <thead class="thead">
+                  <tr>
+                      <th>Product Name</th>
+                      <th>Actual Price</th>
+                      <th>Discounted Price</th>
+                      <th>Total</th>
+                  </tr>
+              </thead>
+              <tbody class="tbody">
+                  <tr>
+                      <td>{{productDetails.productName}}</td>
+                      <td>{{productDetails.productActualPrice}}</td>
+                      <td>
+                          {{productDetails.productDiscountedPrice}}
+                      </td>
+                      <td>
+                         {{productDetails.productDiscountedPrice}}
+                      </td>
+   
+                    </tr>
+                   
+<tr>
+    <td>
+        <form [formGroup]="couponCode" (ngSubmit)="couponClick()"> 
+            <mat-form-field appearance="outline">
+                <mat-label>Coupon Code</mat-label>
+                    <input matInput placeholder="Coupon Code" formControlName="couponCode" name="couponCode">
+            </mat-form-field> 
+                <button *ngIf="!couponDetails.couponValue" type="submit" mat-stroked-button color="warn" style="margin-right: 3px;">Apply Coupon</button> 
+            </form>
+            <button (click)="removeCoupon()" *ngIf="couponDetails.couponValue" class="m-2" type="submit" mat-stroked-button color="warn" style="margin-right: 3px;">Remove Coupon</button>   
+
+    </td>
+  <td></td>
+  <td><b *ngIf="couponDetails.couponValue">Applied Coupon Value</b></td>
+    <td>{{couponDetails.couponValue}}</td>
+    
+</tr>
+
+
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td>Total</td>
+                      <td *ngIf="!couponDetails.couponValue">{{productDetails.productDiscountedPrice}}</td>
+                      <td *ngIf="couponDetails.couponValue">{{productDetails.productDiscountedPrice - couponDetails.couponValue }}</td>
+                  </tr>
+              </tbody>
+          </table>
+          </div>
+      </div>
+
+  </div>
+</div>

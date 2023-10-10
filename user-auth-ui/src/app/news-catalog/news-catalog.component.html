@@ -1,0 +1,79 @@
+<mat-toolbar><span class="m-auto">Add a News</span>
+</mat-toolbar>
+<div class="container-sm mt-5 col-md-5">
+<div class="card" style="padding: 20px">
+  <form [formGroup]="newsForm">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Title</mat-label>
+      <input formControlName="newsTitle" type="text" required name="newsTitle" id="newsTitle" matInput placeholder="newsTitle">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Description</mat-label>
+      <input formControlName="newsDescription"  type="text" required name="newsDescription" id="newsDescription" matInput placeholder="newsDescription">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose Publish date</mat-label>
+      <input formControlName="newsPublishDate"  name="newsPublishDate" id="newsPublishDate"  matInput [matDatepicker]="picker" required>
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Content</mat-label>
+      <textarea formControlName="newsContent" required name="newsContent" id="newsContent" matInput placeholder="newsContent....."></textarea>
+    </mat-form-field>
+    <div class="col-6">
+      <h3>Choose a Image</h3>
+      <input required type="file" (change)="onChange($event)" formControlName="newsImage"  name="newsImage"/>
+    </div>
+    <div align="end">
+    <button type="submit" (click)="resetData()" mat-stroked-button color="primary" style="margin-right:4px;">Clear</button>
+    <button type="submit" (click)="onClickSubmitForm()" mat-stroked-button color="accent">Add News</button>
+
+  </div>
+  </form>
+</div>
+</div>
+
+<!--
+<mat-toolbar><span class="m-auto">Add a News</span>
+</mat-toolbar>
+<div class="container-sm mt-5 col-md-5">
+<div class="card" style="padding: 20px">
+  <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Title</mat-label>
+       <input type="text" id="newsTitle" name="newsTitle" [(ngModel)]="model.newsTitle" required  matInput placeholder="newsTitle">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Description</mat-label>
+       
+      <input id="newsDescription" name="newsDescription" [(ngModel)]="model.newsDescription" matInput placeholder="newsDescription" required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose Publish date</mat-label>
+      <input   name="newsPublishDate" id="newsPublishDate" [(ngModel)]="model.newsPublishDate"  matInput [matDatepicker]="picker" required>
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Content</mat-label>
+      <textarea id="newsContent" name="newsContent" [(ngModel)]="model.newsContent" required matInput placeholder="newsContent....."></textarea>
+    </mat-form-field>
+    <div class="col-6">
+      <h3>Choose a Image</h3>
+       <input type="file" id="newsImage" name="newsImage" (change)="onFileChange($event)" required>
+      
+    </div>
+    <div align="end">
+    <button type="submit"  mat-stroked-button color="primary" style="margin-right:4px;">Clear</button>
+    <button type="submit"  mat-stroked-button color="accent">Add News</button>
+
+  </div>
+  </form>
+</div>
+</div>
+-->

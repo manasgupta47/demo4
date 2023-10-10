@@ -1,0 +1,37 @@
+<mat-toolbar><span class="m-auto">Add a Product</span>
+</mat-toolbar>
+<div class="container-sm mt-5 col-md-5">
+<div class="card" style="padding: 20px">
+  <form [formGroup]="updateForm">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Title</mat-label>
+      <input value="{{news.newsTitle}}" formControlName="newsTitle" type="text" name="newsTitle" id="newsTitle" matInput placeholder="newsTitle">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Description</mat-label>
+      <input value="{{news.newsDescription}}" formControlName="newsDescription" type="text" name="newsDescription" id="newsDescription" matInput placeholder="newsDescription">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose Publish date</mat-label>
+      <input value="{{news.newsPublishDate}}" formControlName="newsPublishDate"  name="newsPublishDate" id="newsPublishDate"  matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>News Content</mat-label>
+      <textarea value="{{news.newsContent}}" formControlName="newsContent" type="text"  name="newsContent" id="newsContent" matInput placeholder="newsContent...."></textarea>
+    </mat-form-field>
+    <div class="col-6">
+      <h3>Choose a Product Image</h3>
+      <input id="file" type="file" (change)="onChange($event)" formControlName="newsImage"  name="productImage"/>
+      <label for="fileInput" class="file-label" >{{selectedFileName.substring(0,35)}}.jpeg</label>
+    </div>
+    <div align="end">
+    <button type="submit"  mat-stroked-button color="accent" (click)="onClickSubmit()">Update News</button>
+  </div>
+  </form>
+</div>
+</div>
+

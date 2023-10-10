@@ -1,0 +1,64 @@
+<mat-toolbar><span class="m-auto">All Coupons</span>
+</mat-toolbar>
+<div class="mt-5 p-3">
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Search any coupon</mat-label>
+    <input matInput
+           #searchkeyword
+           (keyup)="searchByKeyword(searchkeyword.value)"
+           name="searchKey"
+           id="searchKey"
+           placeholder="Search any coupon">
+</mat-form-field>
+  <div *ngIf="showTable">
+<table mat-table [dataSource]="couponsDetails" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.couponId}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Coupon Name">
+    <th mat-header-cell *matHeaderCellDef>Coupon Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.couponName}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Coupon Code">
+    <th mat-header-cell *matHeaderCellDef>Coupon Code</th>
+    <td mat-cell *matCellDef="let element"> {{element.couponCode}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Coupon Value">
+    <th mat-header-cell *matHeaderCellDef>Coupon Value</th>
+    <td mat-cell *matCellDef="let element"> {{element.couponValue}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Coupon Last Date">
+    <th mat-header-cell *matHeaderCellDef> Coupon Last Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.couponLastDate}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="showImage(element)"><mat-icon>
+        images
+      </mat-icon>
+    </button> 
+    <button mat-icon-button color="primary" (click)="editCoupon(element.couponId)"><mat-icon>
+      edit
+    </mat-icon></button> 
+    <button mat-icon-button color="warn" (click)="deleteCoupons(element.couponId)"><mat-icon>
+      delete
+    </mat-icon></button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+<div class="text-center p-5"  *ngIf="showLoadMoreProductButton">
+  <button type="button" mat-raised-button color="primary" (click)="loadMoreCoupon()">Load more</button>
+</div>
+</div>

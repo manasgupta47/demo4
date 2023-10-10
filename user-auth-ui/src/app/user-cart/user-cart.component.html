@@ -1,0 +1,32 @@
+<mat-toolbar><span class="m-auto">Cart</span>
+</mat-toolbar>
+<div class="container mt-5">
+  <mat-grid-list cols="4" rowHeight="2:3.5" gutterSize="10">
+    <mat-grid-tile *ngFor="let p of productDetails">
+      <div class="row p-5">
+        
+      <div class="image-container">
+        
+        <img class="home-page-product-image" [src]="p.productImage">
+      </div>
+      <div class="mt-1" style="margin-left:35px;">
+        <p><b>{{p.productName}}</b></p>
+      </div>
+      <div class="mt-1" style="margin-left:35px;">
+        <p style="white-space: inherit; height: 40px; width: 288px; overflow: hidden; text-overflow: ellipsis;">{{p.productDescription}}</p>
+      </div>
+      <div class="mt-1" style="margin-left:35px;">
+        <b>Rs. {{p.productDiscountedPrice}}</b> &nbsp; <b style="text-decoration: line-through;">{{p.productActualPrice}}</b>
+      </div>
+      <div class="mt-4"  style="margin-left:65px;">
+      
+        <button type="button"  mat-stroked-button color="primary"(click)="payment(p.productId)" >Buy Now</button>
+      
+      
+        <button type="button"  mat-stroked-button color="primary"(click)="remove(p.productId)" >Remove</button>
+      
+    </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

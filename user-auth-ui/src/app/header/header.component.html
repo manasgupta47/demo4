@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+  <span class="m-2"><mat-icon>eco</mat-icon>MGram</span>
+  <a  mat-button  routerLink="/">Home</a>
+<mat-toolbar color="primary" *ngIf="isLoggedin()">
+<button mat-button [matMenuTriggerFor]="product" *ngIf="isAdmin()">
+  Product Catalog
+</button>
+<a mat-button class="m-1" *ngIf="isUser()" routerLink="/ShownewstouserComponent">
+  News
+</a>
+<mat-menu #product="matMenu">
+  <button mat-menu-item *ngIf="isAdmin()" routerLink="/addNewProduct">
+    Add Product
+  </button>
+  <button mat-menu-item *ngIf="isAdmin()" routerLink="/showProductToAdmin">
+    View Product
+  </button>
+</mat-menu>
+<a mat-button [matMenuTriggerFor]="coupons" *ngIf="isAdmin()">
+  Coupons Catalog
+</a>
+<a class="m-1" mat-button *ngIf="isUser()" routerLink="/ShowcouponstouserComponent">Coupons</a>
+<mat-menu #coupons="matMenu">
+  <button mat-menu-item *ngIf="isAdmin()" routerLink="/addNewCoupons">
+    Add Coupons
+  </button>
+  <button mat-menu-item *ngIf="isAdmin()" routerLink="/showCouponsToAdmin">
+    View Coupons
+  </button>
+</mat-menu>
+<button mat-button [matMenuTriggerFor]="news" *ngIf="isAdmin()">
+  News Catalog
+</button>
+<a mat-button class="m-1" *ngIf="isUser()" routerLink="/userCart">
+  Cart
+</a>
+<mat-menu #news="matMenu">
+  <button mat-menu-item *ngIf="isAdmin()" routerLink="/addNewNews">
+    Add News
+  </button>
+  <button mat-menu-item *ngIf="isAdmin()" routerLink="/showNewsToAdmin">
+    View News
+  </button>
+</mat-menu>
+</mat-toolbar>
+<a class="m-3" mat-button routerLink="">About Us</a>
+<div class="spacer"></div>
+<a 
+*ngIf="!isLoggedin()"
+mat-raised-button
+color="primary"
+routerLink="/login"
+>
+Login
+</a>
+<a class="m-2"
+*ngIf="isLoggedin()"
+mat-raised-button
+color="accent"
+(click)="logout()"
+>
+Logout
+</a>
+</mat-toolbar>

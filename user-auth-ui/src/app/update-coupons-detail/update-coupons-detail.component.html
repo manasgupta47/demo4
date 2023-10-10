@@ -1,0 +1,38 @@
+<mat-toolbar><span class="m-auto">Add a Product</span>
+</mat-toolbar>
+<div class="container-sm mt-5 col-md-5">
+<div class="card" style="padding: 20px">
+  <form [formGroup]="updateForm">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Coupon Name</mat-label>
+      <input value="{{coupon.couponName}}"  formControlName="couponName" type="text" name="couponName" id="couponName" matInput placeholder="couponName">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Coupon Code</mat-label>
+      <input value="{{coupon.couponCode}}"  formControlName="couponCode" type="text" name="couponCode" id="couponCode" matInput placeholder="couponCode">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Coupon Value</mat-label>
+      <input value="{{coupon.couponValue}}"  formControlName="couponValue" type="text" name="couponValue" id="couponValue" matInput placeholder="couponValue">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Coupon Last date</mat-label>
+      <input value="{{coupon.couponLastDate}}" formControlName="couponLastDate"  name="couponLastDate" id="couponLastDate"  matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="col-6">
+      <h3>Choose a Image</h3>
+      <input id="file" type="file" (change)="onChange($event)" formControlName="couponImage"  name="couponImage"/>
+      <label for="fileInput" class="file-label" >{{selectedFileName.substring(0,35)}}.jpeg</label>
+    </div>
+    <div align="end">
+    <button type="submit"  mat-stroked-button color="accent" (click)="onClickSubmit()">Update Coupon</button>
+  </div>
+  </form>
+</div>
+</div>
+

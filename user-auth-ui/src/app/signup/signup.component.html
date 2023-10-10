@@ -1,0 +1,59 @@
+<mat-toolbar><span class="m-auto">Signup</span>
+</mat-toolbar>
+<div class="container-sm mt-5 col-md-5">
+  <div class="card" style="padding: 20px">
+    <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Firstname</mat-label>
+        <input
+          type="text"
+          required
+          ngModel
+          name="userFirstName"
+          id="userFirstName"
+          matInput
+          placeholder="Firstname"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Lastname</mat-label>
+        <input
+          type="text"
+          required
+          ngModel
+          name="userLastName"
+          id="userLastName"
+          matInput
+          placeholder="Lastname"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Username</mat-label>
+        <input
+          type="text"
+          required
+          ngModel
+          name="userName"
+          id="userName"
+          matInput
+          placeholder="Username"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          required
+          ngModel
+          name="userPassword"
+          id="userPassword"
+          matInput
+          placeholder="Password"
+        />
+      </mat-form-field>
+      <button class="w-100" type="submit" mat-raised-button color="primary">
+        Signup
+      </button>
+    </form>
+  </div>
+</div>
