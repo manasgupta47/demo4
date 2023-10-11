@@ -3,6 +3,7 @@ import { CouponsService } from '../_services/coupons.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Coupons } from '../_model/coupons.model';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-showcouponstouser',
@@ -13,7 +14,7 @@ export class ShowcouponstouserComponent {
   couponDetails:Coupons[]=[];
   pageNumber:number =0;
   showLoadButton = false;
-  constructor(private couponService: CouponsService,private router:Router){
+  constructor(private location:Location,private couponService: CouponsService,private router:Router){
     
   }
   ngOnInit():void{
@@ -41,7 +42,9 @@ export class ShowcouponstouserComponent {
       }
     )
     }
-
+back(){
+  this.location.back()
+}
     public loadMoreCoupon() {
       this.pageNumber = this.pageNumber + 1;
       this.showCoupon();

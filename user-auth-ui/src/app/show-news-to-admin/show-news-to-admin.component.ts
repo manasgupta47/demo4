@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ShowNewsImageComponent } from '../show-news-image/show-news-image.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Route, Router } from '@angular/router';
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-show-news-to-admin',
   templateUrl: './show-news-to-admin.component.html',
@@ -20,7 +21,7 @@ export class ShowNewsToAdminComponent {
   ngOnInit():void{
     this.showNews();
   }
-  constructor(private router:Router,private newsService: NewsService,private _snackBar: MatSnackBar,public dialog: MatDialog){}
+  constructor(private location: Location,private router:Router,private newsService: NewsService,private _snackBar: MatSnackBar,public dialog: MatDialog){}
   public showNews(searchKeyword: string = ""){
     this.showTable=false;
   this.newsService.showNews(this.pageNumber,searchKeyword).subscribe(
@@ -38,6 +39,9 @@ export class ShowNewsToAdminComponent {
   console.log(error);
     }
   )
+  }
+  back(){
+    this.location.back();
   }
   public deleteNews(newsId:string){
     this.newsService.deleteNews(newsId).subscribe(

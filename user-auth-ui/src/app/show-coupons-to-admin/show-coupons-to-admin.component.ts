@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowCouponsImageComponent } from '../show-coupons-image/show-coupons-image.component';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-show-coupons-to-admin',
   templateUrl: './show-coupons-to-admin.component.html',
@@ -20,7 +21,7 @@ export class ShowCouponsToAdminComponent {
   ngOnInit():void{
     this.showCoupons();
   }
-  constructor(private router:Router,private couponsService: CouponsService,private _snackBar: MatSnackBar,public dialog: MatDialog){}
+  constructor(private location:Location,private router:Router,private couponsService: CouponsService,private _snackBar: MatSnackBar,public dialog: MatDialog){}
   public showCoupons(searchKeyword: string = ""){
     this.showTable=false;
   this.couponsService.showCoupons(this.pageNumber,searchKeyword).subscribe(
@@ -38,6 +39,9 @@ export class ShowCouponsToAdminComponent {
   console.log(error);
     }
   )
+  }
+  back(){
+    this.location.back()
   }
   searchByKeyword(searchkeyword: any){
     console.log(searchkeyword);

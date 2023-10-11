@@ -5,6 +5,7 @@ import { CouponsService } from '../_services/coupons.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, Subscriber } from 'rxjs';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-coupons-catalog',
@@ -19,7 +20,8 @@ export class CouponsCatalogComponent {
   constructor(
     private couponService: CouponsService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private location:Location
   ) {
     this.couponForm = new FormGroup({
       couponName: new FormControl('', [Validators.required]),
@@ -29,7 +31,9 @@ export class CouponsCatalogComponent {
       couponImage: new FormControl([], Validators.required),
     });
   }
- 
+  back(){
+   this.location.back()
+  }
   onClickSubmitForm() {
     if (!this.couponForm.invalid) {
       this.couponObj.couponName = this.couponForm.value.couponName;

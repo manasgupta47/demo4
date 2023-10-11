@@ -5,6 +5,7 @@ import { NewsService } from '../_services/news.service';
 import { Router } from '@angular/router';
 import { Observable, Subscriber } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-news-catalog',
@@ -19,7 +20,8 @@ export class NewsCatalogComponent {
   constructor(
     private newsService: NewsService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private location:Location
   ) {
     this.newsForm = new FormGroup({
       newsTitle: new FormControl('', [Validators.required]),
@@ -55,6 +57,9 @@ export class NewsCatalogComponent {
     } else {
       this.openSnackBar('Something Went Wrong !!', 'Dismiss');
     }
+  }
+  back(){
+    this.location.back()
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {

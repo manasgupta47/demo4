@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { News } from '../_model/news.model';
 import { NewsService } from '../_services/news.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-news-views-deatil',
@@ -12,6 +13,8 @@ export class NewsViewsDeatilComponent {
 news :any=News;
 id:any;
 constructor(private newsService:NewsService,
+  private location:Location,
+
   private route: ActivatedRoute,
   private router: Router,
   ){}
@@ -29,5 +32,8 @@ ngOnInit():void{
     }
   )
   
+}
+back(){
+  this.location.back()
 }
 }

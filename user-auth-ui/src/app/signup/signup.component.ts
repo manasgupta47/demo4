@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from '../_services/user.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-  constructor(private userService:UserService,
+ 
+  constructor(private location:Location,private userService:UserService,
     private router:Router, private _snackBar: MatSnackBar){}
   signup(signupForm: NgForm) {
     this.userService.findByUserName(signupForm.value.userName).subscribe((resp)=>{
@@ -35,5 +37,8 @@ export class SignupComponent {
       duration: 3000,
       verticalPosition: 'top',
     });
+  }
+  back():void{
+   this.location.back();
   }
 }

@@ -5,6 +5,7 @@ import { UserAuthService } from '../_services/user-auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShareDataService } from '../share-data.service';
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,8 @@ export class LoginComponent {
     private userAuthService: UserAuthService,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private shareData: ShareDataService
+    private shareData: ShareDataService,
+    private location:Location
   ) {}
   ngOnInit(): void {}
   login(loginForm: NgForm) {
@@ -42,6 +44,9 @@ export class LoginComponent {
         console.log(error);
       }
     );
+  }
+  back(){
+    this.location.back()
   }
   registerUser() {
     this.router.navigate(['/signup']);

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-forbidden',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./forbidden.component.css']
 })
 export class ForbiddenComponent {
-
+constructor(private location:Location){}
+back(){
+  this.location.back()
+}
 }

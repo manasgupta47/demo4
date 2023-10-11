@@ -9,6 +9,7 @@ import { ShareDataService } from '../share-data.service';
 import { CouponsService } from '../_services/coupons.service';
 import { Coupons } from '../_model/coupons.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common'
 declare var Razorpay: any;
 @Component({
   selector: 'app-payment',
@@ -27,6 +28,7 @@ export class PaymentComponent {
   paymentObj: OrderDetails = new OrderDetails();
   constructor(
     private sharData: ShareDataService,
+    private location:Location,
     private route: Router,
     private activated: ActivatedRoute,
     private productService: ProductService,
@@ -191,6 +193,9 @@ this.couponService.getCouponByCode(this.couponCode.value.couponCode).subscribe((
     duration: 3000,
     verticalPosition: 'top',
   });
+}
+back(){
+  this.location.back();
 }
 }
 

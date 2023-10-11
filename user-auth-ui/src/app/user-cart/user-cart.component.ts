@@ -4,7 +4,7 @@ import { Product } from '../_model/product.model';
 import { ShareDataService } from '../share-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-user-cart',
   templateUrl: './user-cart.component.html',
@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserCartComponent {
   productDetails: Product[] = [];
-  constructor(
+  constructor(private location:Location,
     private userCartService: UsercartService,
     private sharData: ShareDataService,
     private router: Router,
@@ -20,6 +20,9 @@ export class UserCartComponent {
   ) {}
   ngOnInit(): void {
     this.showCart();
+  }
+  back(){
+    this.location.back()
   }
   showCart() {
     this.userCartService.getUserCart(this.sharData.getUserName()).subscribe(

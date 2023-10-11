@@ -5,6 +5,7 @@ import { ProductService } from '../_services/product.service';
 import { Observable, Subscriber } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-add-new-product',
   templateUrl: './add-new-product.component.html',
@@ -17,6 +18,7 @@ export class AddNewProductComponent {
   file!: any[];
   image: string = '';
   constructor(
+    private location:Location,
     private productService: ProductService,
     private router: Router,
     private _snackBar: MatSnackBar
@@ -96,5 +98,8 @@ export class AddNewProductComponent {
   }
   resetData() {
     this.productForm.reset();
+  }
+  back(){
+    this.location.back();
   }
 }

@@ -3,6 +3,7 @@ import { News } from '../_model/news.model';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NewsService } from '../_services/news.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-shownewstouser',
@@ -13,7 +14,7 @@ export class ShownewstouserComponent {
   newsDetails:News[]=[];
   pageNumber:number =0;
   showLoadButton = false;
-  constructor(private newsService: NewsService,private router:Router){
+  constructor(private location : Location,private newsService: NewsService,private router:Router){
     
   }
   ngOnInit():void{
@@ -24,6 +25,9 @@ export class ShownewstouserComponent {
     this.pageNumber = 0;
     this.newsDetails = [];
    this.showNews(searchkeyword)
+  }
+  back(){
+    this.location.back()
   }
   public showNews(searchKey:string=""){
     this.newsService.showNews(this.pageNumber,searchKey).subscribe(

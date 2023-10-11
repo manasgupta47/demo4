@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowProductImageComponent } from '../show-product-image/show-product-image.component';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-show-product-to-admin',
@@ -22,7 +23,7 @@ export class ShowProductToAdminComponent {
   ngOnInit():void{
     this.showProduct()
   }
-constructor(private productService: ProductService,private _snackBar: MatSnackBar, public dialog: MatDialog,
+constructor(private location: Location,private productService: ProductService,private _snackBar: MatSnackBar, public dialog: MatDialog,
   private router:Router){}
 
 public showProduct(searchKeyword: string = ""){
@@ -42,6 +43,9 @@ this.productService.showProduct(this.pageNumber,searchKeyword).subscribe(
 console.log(error);
   }
 )
+}
+back(){
+  this.location.back()
 }
 searchByKeyword(searchkeyword: any){
   console.log(searchkeyword);

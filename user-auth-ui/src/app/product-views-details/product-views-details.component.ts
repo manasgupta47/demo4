@@ -7,6 +7,7 @@ import { UserAuthService } from '../_services/user-auth.service';
 import { ShareDataService } from '../share-data.service';
 import { UsercartService } from '../_services/usercart.service';
 import { UserCart } from '../_model/usercart.model';
+import { Location } from '@angular/common'
 @Component({
   selector: 'app-product-views-details',
   templateUrl: './product-views-details.component.html',
@@ -17,7 +18,7 @@ export class ProductViewsDetailsComponent {
   id: any;
   userCart: any = UserCart;
   check = false;
-  constructor(
+  constructor(private location:Location,
     private userCartService: UsercartService,
     private productService: ProductService,
     private sharData: ShareDataService,
@@ -51,7 +52,9 @@ export class ProductViewsDetailsComponent {
         }
       );
   }
-
+  back(){
+    this.location.back()
+  }
   addTocart() {
     if (this.userAuthservice.isLoggedIn()) {
       if (this.userAuthservice.isUser()) {
