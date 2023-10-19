@@ -10,19 +10,19 @@
     <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Username</mat-label>
-        <input type="text" required ngModel name="userName" id="userName" matInput placeholder="Username">
-        
+        <input type="text" required ngModel #userName="ngModel" name="userName" id="userName" matInput placeholder="Username">
+        <mat-hint *ngIf="userName.invalid && userName.touched" style="color: red;">Username is required</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Password</mat-label>
-        <input type="password" required ngModel name="userPassword" id="userPassword" matInput placeholder="Password">
-        
+        <input type="password" required ngModel #userPassword="ngModel" name="userPassword" id="userPassword" matInput placeholder="Password">
+        <mat-hint *ngIf="userPassword.invalid && userPassword.touched" style="color: red;">Password is required</mat-hint>
       </mat-form-field>
-      <button class="w-100" type="submit" mat-raised-button color="primary">Login</button>
+      <button [disabled]="loginForm.invalid" class="w-100" type="submit" mat-raised-button color="primary">Login</button>
     </form>
   </div>
 </div>
 <div class="text-center">
   <br>
-  <button class="w-20" mat-raised-button type="button" (click)="registerUser()">Create an account</button>
+  <button class="w-20"  mat-raised-button type="button" (click)="registerUser()">Create an account</button>
 </div>

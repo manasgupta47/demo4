@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { News } from '../_model/news.model';
-import { NewsService } from '../_services/news.service';
+
 
 @Component({
   selector: 'app-show-news-image',
@@ -8,16 +7,10 @@ import { NewsService } from '../_services/news.service';
   styleUrls: ['./show-news-image.component.css']
 })
 export class ShowNewsImageComponent {
-  image:any;
-  public newsdata: News | undefined;
-  newsId: string | undefined;
-  constructor(private newsService: NewsService){}
+  newsImage:any;
+
+
   ngOnInit(): void {
-    this.newsService.getNewsById(this.newsId).subscribe((data)=>{
-      this.newsdata=data;
-      this.image=this.newsdata.newsImage
-    },(error)=>{
-      console.log(error);
-    })
+    
 }
 }

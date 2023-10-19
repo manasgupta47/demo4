@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td{
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+    <div style="text-align: center;">
+<h2>MGram</h2>
+<table>
+    <tr>
+        <td><b>Order Id</b></td>
+        <td>{{orderId}}</td>
+    </tr>
+    <tr>
+        <td><b>Customer Name</b></td>
+        <td>{{customerName}}</td>
+    </tr>
+    
+    <tr>
+        <td><b>Customer Email</b></td>
+        <td>{{email}}</td>
+    </tr>
+    <tr>
+        <td><b>Customer Phone</b></td>
+        <td>{{phoneNumber}}</td>
+    </tr>
+    <tr>
+        <td><b>Customer Address</b></td>
+        <td>{{address}}</td>
+    </tr>
+    <tr>
+        <td><b>Product Name</b></td>
+        <td>{{productName}}</td>
+    </tr>
+    <tr>
+        <td><b>Total</b></td>
+        <td>{{amount}}</td>
+    </tr>
+</table>
+
+</div>
+
+</body>
+</html>

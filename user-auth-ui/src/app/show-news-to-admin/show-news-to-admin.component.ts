@@ -78,7 +78,7 @@ this.refresh()
        width: '600px',
      }
      )
-     dialogRef.componentInstance.newsId =news.newsId;
+     dialogRef.componentInstance.newsImage =news.newsImage;
    }
    editNews(newsId: any){
     this.router.navigate(['/updateNewsDetails',newsId])

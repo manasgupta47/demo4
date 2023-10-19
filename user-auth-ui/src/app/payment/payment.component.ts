@@ -1,5 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../_model/product.model';
 import { ProductService } from '../_services/product.service';
 import { OrderDetails } from '../_model/orderdetails.model';
@@ -10,6 +10,8 @@ import { CouponsService } from '../_services/coupons.service';
 import { Coupons } from '../_model/coupons.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common'
+import { OrderHistory } from '../_model/orderhistory.model';
+import { OrderhistoryService } from '../_services/orderhistory.service';
 declare var Razorpay: any;
 @Component({
   selector: 'app-payment',
@@ -17,17 +19,19 @@ declare var Razorpay: any;
   styleUrls: ['./payment.component.css'],
 })
 export class PaymentComponent {
+  checkDate:any
   couponDetails:any=Coupons
   productDetails: any = Product;
   successResonse: any;
   response: any;
   id: any;
-  
+  orderhistoryObj:OrderHistory=new OrderHistory();
   couponCode !:FormGroup
   customerDetails!: FormGroup;
   paymentObj: OrderDetails = new OrderDetails();
   constructor(
     private sharData: ShareDataService,
+    private orderhistoryservice:OrderhistoryService,
     private location:Location,
     private route: Router,
     private activated: ActivatedRoute,
@@ -38,8 +42,8 @@ export class PaymentComponent {
   ) {
     this.customerDetails = new FormGroup({
       customerName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      phoneNumber: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required,Validators.email]),
+      phoneNumber: new FormControl(null, [Validators.required,Validators.pattern("[0-9 ]{10}")]),
       address: new FormControl('', [Validators.required]),
       amount: new FormControl(0, [Validators.required]),
     });
@@ -49,6 +53,18 @@ couponCode: new FormControl('')
   }
   resp: any;
   check=false;
+  get email(){
+    return this.customerDetails.get('email');
+  }
+  get address(){
+    return this.customerDetails.get('address');
+  }
+  get phoneNumber(){
+    return this.customerDetails.get('phoneNumber')
+  }
+  get customerName(){
+    return this.customerDetails.get('customerName');
+  }
   ngOnInit(): void {
     this.id = this.activated.snapshot.params['id'];
     this.productService.getProductById(this.id).subscribe(
@@ -64,7 +80,7 @@ couponCode: new FormControl('')
     .getProductById(this.sharData.getUserName(), this.id)
     .subscribe(
       (data) => {
-        
+       
         if (data) {
           this.check = true;
         }
@@ -95,11 +111,38 @@ couponCode: new FormControl('')
       
       this.successResonse = response;
       if (this.successResonse) {
-        this.paymentObj.productId=this.id
-        this.paymentObj.userId=this.sharData.getUserName();
-        console.log(this.paymentObj);
-        
-        this.route.navigate(['/']);
+        this.orderhistoryObj.productId=this.id
+        this.orderhistoryObj.userName=this.sharData.getUserName();
+        this.orderhistoryObj.orderId=this.options.order_id
+        this.orderhistoryservice.addorderhistory(this.orderhistoryObj).subscribe((data)=>{
+          console.log(data);
+
+        },(error)=>{
+          console.log(error);
+          
+        })
+        this.paymentObj.orderId=this.options.order_id 
+        this.paymentObj.productName=this.productDetails.productName
+        this.orderhistoryservice.addOrderDetails(this.paymentObj).subscribe(
+          (data)=>{
+            console.log(data);
+          },
+          (error)=>{
+            console.log(error);
+          }
+        )
+        this.orderhistoryservice.sendEmail(this.paymentObj).subscribe(
+          (data)=>{
+            console.log(data);
+          },
+          (error)=>{
+            console.log(error);
+            
+          }
+        )
+
+this.route.navigate(['/orderhistory']);
+
         if(this.check){
         this.remove(this.id)
         }
@@ -166,19 +209,29 @@ couponCode: new FormControl('')
   }
 
  couponClick(){
-console.log(this.couponCode.value.couponCode);
 this.couponService.getCouponByCode(this.couponCode.value.couponCode).subscribe((resp)=>{
-  this.couponDetails=resp;
-  
-  if(!this.couponDetails){
-    this.openSnackBar("Wrong Coupon Code","Dismiss")
+this.checkDate=resp
+if(!resp){
+  this.openSnackBar("Something went wrong","Dismiss")  
+}
+  var date=new Date(this.checkDate.couponLastDate)
+  const couponDate=date.getDate();
+  const couponYear=date.getFullYear();
+  const couponMonth=date.getMonth()+1;
+  const date2=new Date();
+  const tDate=date2.getDate();
+  const tYear=date2.getFullYear();
+  const tMonth=date2.getMonth();
+  if(couponYear>=tYear && couponMonth>=tMonth && couponDate>=tDate){
+    this.couponDetails=this.checkDate
+    this.openSnackBar("Coupon added successfully","Dismiss")    
   }
   else{
-    this.openSnackBar("Coupon added successfully","Dismiss")
+    this.openSnackBar("Expired Coupon","Dismiss")
   }
+
 },
 (error)=>{
-
 
 })
  }

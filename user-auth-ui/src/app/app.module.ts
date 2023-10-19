@@ -48,6 +48,10 @@ import { UpdateNewsDetailsComponent } from './update-news-details/update-news-de
 import { UpdateCouponsDetailComponent } from './update-coupons-detail/update-coupons-detail.component';
 import { NewsViewsDeatilComponent } from './news-views-deatil/news-views-deatil.component';
 import { NgxUiLoaderModule,NgxUiLoaderHttpModule } from "ngx-ui-loader";
+import { OrderHistoryComponent } from './order-history/order-history.component';
+import { ViewbillsComponent } from './viewbills/viewbills.component';
+import { OrderHistoryToAdminComponent } from './order-history-to-admin/order-history-to-admin.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,13 +80,19 @@ import { NgxUiLoaderModule,NgxUiLoaderHttpModule } from "ngx-ui-loader";
     UpdateNewsDetailsComponent,
     UpdateCouponsDetailComponent,
     NewsViewsDeatilComponent,
+    OrderHistoryComponent,
+    ViewbillsComponent,
+    OrderHistoryToAdminComponent,
+    LandingPageComponent,
 
   ],
   imports: [
     BrowserModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({
-      showForeground:true
+      showForeground:true,
+      maxTime:7000
+      
     }),
     AppRoutingModule,
     FormsModule,

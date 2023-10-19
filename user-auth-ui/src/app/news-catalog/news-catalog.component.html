@@ -18,7 +18,7 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Choose Publish date</mat-label>
-      <input formControlName="newsPublishDate"  name="newsPublishDate" id="newsPublishDate"  matInput [matDatepicker]="picker" required>
+      <input [min]="minDate" formControlName="newsPublishDate"  name="newsPublishDate" id="newsPublishDate"  matInput [matDatepicker]="picker" required>
       <mat-datepicker-toggle matIconSuffix [for]="picker">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
       </mat-datepicker-toggle>

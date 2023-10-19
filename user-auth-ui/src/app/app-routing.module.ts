@@ -22,8 +22,12 @@ import { PaymentComponent } from './payment/payment.component';
 import { UpdateNewsDetailsComponent } from './update-news-details/update-news-details.component';
 import { UpdateCouponsDetailComponent } from './update-coupons-detail/update-coupons-detail.component';
 import { NewsViewsDeatilComponent } from './news-views-deatil/news-views-deatil.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
+import { OrderHistoryToAdminComponent } from './order-history-to-admin/order-history-to-admin.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {path:'',component:LandingPageComponent},
+  { path: 'product', component: HomeComponent },
   {
     path: 'admin',
     component: AdmimComponent,
@@ -45,7 +49,8 @@ const routes: Routes = [
   {path: 'showProductToAdmin', component: ShowProductToAdminComponent},
   {path: 'showNewsToAdmin', component: ShowNewsToAdminComponent},
   {path: 'showCouponsToAdmin', component: ShowCouponsToAdminComponent},
-  {path: 'updateProductDetails/:id', component: UpdateProductDetailsComponent},
+  {path: 'updateProductDetails/:id', component: UpdateProductDetailsComponent, canActivate: [authGuard],
+  data: { roles: ['Admin'] }},
   {path:'updateCouponDetail/:id',component:UpdateCouponsDetailComponent},
   {path:'updateNewsDetails/:id',component:UpdateNewsDetailsComponent},
   {path:'productViewDetails',component:ProductViewsDetailsComponent},
@@ -53,7 +58,9 @@ const routes: Routes = [
   {path:'ShownewstouserComponent',component:ShownewstouserComponent},
   {path:'ShowcouponstouserComponent',component:ShowcouponstouserComponent},
   {path:'userCart',component:UserCartComponent},
-  {path:'PaymentComponent/:id',component:PaymentComponent}
+  {path:'PaymentComponent/:id',component:PaymentComponent},
+  {path:'orderhistory',component:OrderHistoryComponent},
+  {path:'orderhistorytoadmin',component:OrderHistoryToAdminComponent}
 ];
 
 

@@ -19,6 +19,7 @@
                              placeholder="Full Name"
                              formControlName="customerName"
                              name="customerName">
+                             <mat-hint style="color: red;" *ngIf="customerName?.errors?.['required'] && customerName  && customerName.touched">Name is required</mat-hint>
                   </mat-form-field>
 
                   <mat-form-field appearance="outline"
@@ -29,8 +30,10 @@
                              placeholder="Email"
                             
                              name="email">
-                  </mat-form-field>
-
+                             <mat-hint style="color: red;" *ngIf="email?.errors?.['required'] && email && email.touched">Email is required</mat-hint>
+                             <mat-hint style="color: red;" *ngIf="email?.errors?.['email'] && email && email.touched">Enter a valid email address</mat-hint>
+                            </mat-form-field>
+                 
                   <mat-form-field appearance="outline"
                                   class="w-100">
                       <mat-label>Contact No.</mat-label>
@@ -38,6 +41,9 @@
                              placeholder="Contact No."
                              formControlName="phoneNumber"
                              name="phoneNumber">
+                             <mat-hint style="color: red;" *ngIf="phoneNumber?.errors?.['required'] && phoneNumber && phoneNumber.touched">Phone No. is required</mat-hint>
+                             <mat-hint style="color: red;" *ngIf="phoneNumber?.errors?.['pattern'] && phoneNumber && phoneNumber.touched">Enter a valid Phone Number</mat-hint>
+                            
                   </mat-form-field>
 
                   <mat-form-field appearance="outline"
@@ -47,10 +53,11 @@
                              placeholder="Address"
                             formControlName="address"
                              name="address">
+                              <mat-hint style="color: red;" *ngIf="address?.errors?.['required'] && address && address.touched">Address is required</mat-hint>
                   </mat-form-field>
 
                   <div align="end">
-                      <button type="submit" mat-stroked-button
+                      <button [disabled]="customerDetails.invalid" type="submit" mat-stroked-button
                               color="primary"
                               style="margin-right: 3px;">Pay Now</button>
                   </div>

@@ -19,7 +19,7 @@ export class UsercartService {
   }
   public getUserCart(userName:any){
     return this.httpClient.get<Product[]>(
-      'http://localhost:8084/'+userName
+      'http://localhost:8084/usercarthistory/'+userName
     )
   }
   public getProductById(userName:string,productId:string){

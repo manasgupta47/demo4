@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common'
 
 @Component({
+ 
   selector: 'app-show-product-to-admin',
   templateUrl: './show-product-to-admin.component.html',
   styleUrls: ['./show-product-to-admin.component.css']
@@ -73,13 +74,15 @@ openSnackBar(message: string, action: string) {
     verticalPosition: 'top',
   });
 }
+
 showImage(product: any){
  let dialogRef= this.dialog.open(ShowProductImageComponent,{
     height: '400px',
     width: '600px',
   }
   )
-  dialogRef.componentInstance.productId =product.productId;
+  dialogRef.componentInstance.productImage =product.productImage;
+  
 }
 editProductDetails(productId: any){
   this.router.navigate(['/updateProductDetails',productId])

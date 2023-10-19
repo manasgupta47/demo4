@@ -36,7 +36,7 @@ export class LoginComponent {
 
           console.log(loginForm.value.userName);
 
-          this.router.navigate(['/user']);
+          this.router.navigate(['/product']);
         }
       },
       (error) => {

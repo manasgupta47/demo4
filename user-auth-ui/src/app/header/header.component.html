@@ -5,6 +5,9 @@
 <button mat-button [matMenuTriggerFor]="product" *ngIf="isAdmin()">
   Product Catalog
 </button>
+<a mat-button class="m-1" *ngIf="isUser()" routerLink="/product">
+  Product
+</a>
 <a mat-button class="m-1" *ngIf="isUser()" routerLink="/ShownewstouserComponent">
   News
 </a>
@@ -34,6 +37,9 @@
 <a mat-button class="m-1" *ngIf="isUser()" routerLink="/userCart">
   Cart
 </a>
+<a mat-button class="m-1" *ngIf="isUser()" routerLink="/orderhistory">
+ Your Orders
+</a>
 <mat-menu #news="matMenu">
   <button mat-menu-item *ngIf="isAdmin()" routerLink="/addNewNews">
     Add News
@@ -42,6 +48,9 @@
     View News
   </button>
 </mat-menu>
+<a mat-button class="m-1" *ngIf="isAdmin()" routerLink="/orderhistorytoadmin">
+  All Orders
+ </a>
 </mat-toolbar>
 <a class="m-3" mat-button routerLink="">About Us</a>
 <div class="spacer"></div>

@@ -23,7 +23,7 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <mat-label>Coupon Last date</mat-label>
-      <input formControlName="couponLastDate"  name="couponLastDate" id="couponLastDate"  matInput [matDatepicker]="picker" required>
+      <input  [min]="minDate"  formControlName="couponLastDate"  name="couponLastDate" id="couponLastDate"  matInput [matDatepicker]="picker" required>
       <mat-datepicker-toggle matIconSuffix [for]="picker">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
       </mat-datepicker-toggle>

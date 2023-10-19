@@ -12,16 +12,16 @@ import { Location } from '@angular/common'
 })
 export class UserCartComponent {
   productDetails: Product[] = [];
-  constructor(private location:Location,
+  constructor(private location: Location,
     private userCartService: UsercartService,
     private sharData: ShareDataService,
     private router: Router,
     private _snackBar: MatSnackBar
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.showCart();
   }
-  back(){
+  back() {
     this.location.back()
   }
   showCart() {

@@ -13,6 +13,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./coupons-catalog.component.css'],
 })
 export class CouponsCatalogComponent {
+  minDate = new Date();
   couponForm!: FormGroup;
   couponObj: Coupons = new Coupons();
   file!: any[];
@@ -45,7 +46,7 @@ export class CouponsCatalogComponent {
       this.couponService
         .addCoupon(this.couponObj)
         .subscribe((data) =>{ console.log(data)
-          this.openSnackBar('Coupon Added Successfully', 'Dismiss');
+          
         },
         (error)=>{
           console.log(error);
@@ -55,6 +56,7 @@ export class CouponsCatalogComponent {
      
       this.router.navigate(['/addNewCoupons']);
       window.location.reload();
+      this.openSnackBar('Coupon Added Successfully', 'Dismiss');
     } else {
       this.openSnackBar('Something Went Wrong !!', 'Dismiss');
     }

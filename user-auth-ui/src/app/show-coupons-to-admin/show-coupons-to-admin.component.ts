@@ -75,7 +75,7 @@ export class ShowCouponsToAdminComponent {
        width: '600px',
      }
      )
-     dialogRef.componentInstance.couponId =coupon.couponId;
+     dialogRef.componentInstance.couponImage =coupon.couponImage;
    }
    editCoupon(couponId:any){
     this.router.navigate(['/updateCouponDetail',couponId])

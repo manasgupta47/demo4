@@ -13,7 +13,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./news-catalog.component.css'],
 })
 export class NewsCatalogComponent {
-  
+  minDate = new Date();
   newsForm!: FormGroup;
   newsObj: News = new News();
 
@@ -43,7 +43,7 @@ export class NewsCatalogComponent {
       this.newsService
         .addNews(this.newsObj)
         .subscribe((data) => {console.log(data)
-          this.openSnackBar('News Added Successfully', 'Dismiss');
+         
         },
         (error)=>{
           console.log(error);
@@ -51,7 +51,7 @@ export class NewsCatalogComponent {
         });
         this.router.navigate(['/addNewNews']);
         window.location.reload();
-      
+        this.openSnackBar('News Added Successfully', 'Dismiss');
       
     
     } else {

@@ -26,8 +26,8 @@ export class AddNewProductComponent {
     this.productForm = new FormGroup({
       productName: new FormControl('', [Validators.required]),
       productDescription: new FormControl('', [Validators.required]),
-      productDiscountedPrice: new FormControl(0, [Validators.required]),
-      productActualPrice: new FormControl(0, [Validators.required]),
+      productDiscountedPrice: new FormControl(null, [Validators.required]),
+      productActualPrice: new FormControl(null, [Validators.required]),
       productImage: new FormControl([], Validators.required),
     });
   }
@@ -47,13 +47,16 @@ export class AddNewProductComponent {
       this.productService
         .addProduct(this.productObj)
         .subscribe((data) => {console.log(data)
-        this.openSnackBar("Product Added Successfully","Dismiss")},(error)=>{
+          console.log(data);
+          },(error)=>{
           console.log(error);
           this.openSnackBar('Something Went Wrong !!', 'Dismiss');
           
     });    
+   
       this.router.navigate(['/addNewProduct']);
       window.location.reload();
+      this.openSnackBar("Product Added Successfully","Dismiss")
     } else {
      this.openSnackBar("Something Went Wrong","Dismiss")
     }
